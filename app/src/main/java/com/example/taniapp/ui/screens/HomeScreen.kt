@@ -44,6 +44,10 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
@@ -126,7 +130,24 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavController, auth
                                     .clickable {
                                         selectedIndex = index
                                     }
-                                    .padding(10.dp) // Padding untuk item navigasi
+                                    .padding(10.dp)
+                                    .then(
+                                        if (selectedIndex == index) {
+                                            Modifier.drawBehind {
+                                                val lineHeight = 2.dp.toPx()
+                                                val lineWidth = size.width
+                                                val lineStart = 0f
+                                                val lineOffset = size.height + 8.dp.toPx()
+
+                                                drawRoundRect(
+                                                    color = Color(0xFF55AA68),
+                                                    topLeft = Offset(lineStart, lineOffset),
+                                                    size = Size(lineWidth, lineHeight),
+                                                    cornerRadius = CornerRadius.Zero.copy(8.dp.toPx()), // Corner radius untuk membuat rounded ends
+                                                )
+                                            }
+                                        } else Modifier
+                                    )
                             ) {
                                 val iconColor = if (selectedIndex == index) Color(0xFF55AA68) else Color.Gray
 
