@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1092478611480",
+    "project_id": "tani-app-69642",
+    "storage_bucket": "tani-app-69642.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092478611480:android:f007869d3242466d39936d",
+        "android_client_info": {
+          "package_name": "com.example.taniapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqb2XmFjDRilVGyTQofB_m8PpGD8Qm4L8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092478611480:android:1fb76adf01b487a739936d",
+        "android_client_info": {
+          "package_name": "com.example.tanimaster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqb2XmFjDRilVGyTQofB_m8PpGD8Qm4L8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

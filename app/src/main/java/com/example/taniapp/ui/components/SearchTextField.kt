@@ -21,15 +21,13 @@ fun SearchTextField(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
     ) {
         OutlinedTextField(
             value = query,
             onValueChange = onQueryChange,
             modifier = Modifier
-                .weight(1f)
-                .padding(end = 8.dp),
-            placeholder = { Text("Search Anime") },
+                .weight(1f),
+            placeholder = { Text("Search Task") },
             singleLine = true,
             shape = RoundedCornerShape(8.dp),
         )
