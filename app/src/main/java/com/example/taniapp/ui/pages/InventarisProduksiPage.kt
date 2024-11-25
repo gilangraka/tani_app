@@ -12,13 +12,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun KeuanganPage(modifier: Modifier = Modifier, navController: NavController) {
+fun InventarisProduksiPage(modifier: Modifier = Modifier, navController: NavController) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(Color.White)
             .padding(16.dp)
     ) {
-        Text("Keuangan Page")
+        Text("Inventaris Produksi Page")
     }
 }
