@@ -39,6 +39,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -114,7 +115,7 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavController, auth
                                     .padding(4.dp)
                                     .background(color = Color(0xFF55AA68), shape = RoundedCornerShape(20))
                                     .clickable {
-                                        println("Tambah ditekan!")
+                                        navController.navigate("addtask")
                                     }
                                     .padding(10.dp) // Padding dalam tombol
                             ) {
@@ -162,43 +163,6 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavController, auth
                     }
                 }
             }
-
-//            NavigationBar(
-//                containerColor = Color.White
-//            ) {
-//                navItemList.forEachIndexed { index, navItem ->
-//                    val icon = painterResource(id = navItem.icon)
-//
-//                    if (navItem.label == "AddTask") {
-//                        Box(
-//                            modifier = Modifier
-//                                .padding(4.dp)
-//                                .background(color = Color(0xFF55AA68), shape = RoundedCornerShape(20))
-//                                .clickable {
-//                                    println("Tambah ditekan!")
-//                                }
-//                                .padding(10.dp) // Padding dalam tombol
-//                        ) {
-//                            Icon(
-//                                imageVector = Icons.Rounded.Add,
-//                                contentDescription = "Tambah",
-//                                tint = Color.White // Ikon warna putih
-//                            )
-//                        }
-//                    } else {
-//                        NavigationBarItem(
-//                            selected = selectedIndex == index,
-//                            onClick = {
-//                                selectedIndex = index
-//                            },
-//                            icon = {
-//                                Icon(painter = icon, contentDescription = navItem.label, modifier = Modifier.size(24.dp))
-//                            },
-//                        )
-//                    }
-//
-//                }
-//            }
         }
     ) {
             innerPadding ->
@@ -211,7 +175,11 @@ fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int, navControll
     when (selectedIndex) {
         0 -> HomePage(modifier = modifier, navController = navController)
         1 -> InventarisProduksiPage(modifier = modifier, navController = navController)
-        2 -> HomePage(modifier = modifier, navController = navController)
+        2 -> {
+            LaunchedEffect(Unit) {
+                navController.navigate("addtask")
+            }
+        }
         3 -> KeuanganPage(modifier = modifier, navController = navController)
         4 -> SettingPage(modifier = modifier, navController = navController)
     }

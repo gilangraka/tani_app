@@ -5,11 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.taniapp.ui.screens.AddTaskScreen
 import com.example.taniapp.ui.screens.HomeScreen
 import com.example.taniapp.ui.screens.LoginScreen
 import com.example.taniapp.ui.screens.RegisterScreen
@@ -30,6 +32,7 @@ class MainActivity : ComponentActivity() {
                     composable("signin") { LoginScreen(navController = navController, authViewModel = authViewModel) }
                     composable("signup") { RegisterScreen(navController = navController, authViewModel = authViewModel) }
                     composable("home") { HomeScreen(navController = navController, authViewModel = authViewModel) }
+                    composable("addtask") { AddTaskScreen(navController = navController, modifier = Modifier) }
                 }
             }
         }

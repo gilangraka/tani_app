@@ -107,8 +107,6 @@ fun HomePage(modifier: Modifier = Modifier, navController: NavController) {
             }
 
             LazyRow(
-                modifier = Modifier
-                    .padding(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(2) { index ->

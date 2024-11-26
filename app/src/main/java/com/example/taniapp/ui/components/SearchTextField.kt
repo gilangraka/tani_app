@@ -15,7 +15,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SearchTextField(
     query: String,
-    onQueryChange: (String) -> Unit
+    onQueryChange: (String) -> Unit,
+    text: String = "Search Task"
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -27,7 +28,7 @@ fun SearchTextField(
             onValueChange = onQueryChange,
             modifier = Modifier
                 .weight(1f),
-            placeholder = { Text("Search Task") },
+            placeholder = { Text(text) },
             singleLine = true,
             shape = RoundedCornerShape(8.dp),
         )
