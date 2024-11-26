@@ -1,5 +1,6 @@
 package com.example.taniapp.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -41,6 +42,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -50,6 +52,7 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -63,11 +66,23 @@ import com.example.taniapp.ui.pages.HomePage
 import com.example.taniapp.ui.pages.InventarisProduksiPage
 import com.example.taniapp.ui.pages.KeuanganPage
 import com.example.taniapp.ui.pages.SettingPage
+import com.example.taniapp.viewmodel.AuthState
 import com.example.taniapp.viewmodel.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier, navController: NavController, authViewModel: AuthViewModel) {
+    val authState = authViewModel.authState.observeAsState()
+    val context = LocalContext.current
+
+    LaunchedEffect(authState.value) {
+        when(authState.value) {
+            is AuthState.Unauthenticated -> navController.navigate("welcome")
+            
+            else -> Unit
+        }
+    }
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         val windowInsetsController = ViewCompat.getWindowInsetsController(view)
@@ -166,12 +181,12 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavController, auth
         }
     ) {
             innerPadding ->
-        ContentScreen(modifier = Modifier.padding(innerPadding), selectedIndex, navController)
+        ContentScreen(modifier = Modifier.padding(innerPadding), selectedIndex, navController, authViewModel = authViewModel)
     }
 }
 
 @Composable
-fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int, navController: NavController) {
+fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int, navController: NavController, authViewModel: AuthViewModel) {
     when (selectedIndex) {
         0 -> HomePage(modifier = modifier, navController = navController)
         1 -> InventarisProduksiPage(modifier = modifier, navController = navController)
@@ -181,6 +196,6 @@ fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int, navControll
             }
         }
         3 -> KeuanganPage(modifier = modifier, navController = navController)
-        4 -> SettingPage(modifier = modifier, navController = navController)
+        4 -> SettingPage(modifier = modifier, navController = navController, onLogout = {authViewModel.signout()})
     }
 }

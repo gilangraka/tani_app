@@ -26,21 +26,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.taniapp.ui.components.ButtonText
 
 @Composable
-fun SettingPage(modifier: Modifier = Modifier, navController: NavController) {
+fun SettingPage(modifier: Modifier = Modifier, navController: NavController, onLogout: () -> Unit) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(Color.White)
             .padding(16.dp)
     ) {
-        ProfileContent(navController)
+        ProfileContent(navController, onLogout)
     }
 }
 
 @Composable
-fun ProfileContent(navController: NavController) {
+fun ProfileContent(navController: NavController, onLogout: () -> Unit) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -54,6 +55,13 @@ fun ProfileContent(navController: NavController) {
         }
         item {
             ProfileOptions(navController)
+        }
+        item {
+            ButtonText(
+                text = "Logout",
+                modifier = Modifier,
+                onClick = onLogout
+            )
         }
         item {
             Spacer(modifier = Modifier.height(16.dp))
